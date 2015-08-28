@@ -1,0 +1,19 @@
+{
+  "name": "backend-db",
+  "version": "0.0.0",
+  "description": "Backend for OADN",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/oadn/backend-db.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oadn/backend-db/issues"
+  },
+  "homepage": "https://github.com/oadn/backend-db"
+}
