@@ -23,11 +23,6 @@ db.once('open', function() {
 
     app.use(bodyParser.json());
 
-    app.use(function(err, req, res, next) {
-      if(!err.status) return res.status(500).send(err.message||err);
-      res.status(err.status).send(err.message);
-    })
-
     var api = express.Router();
 
     api.use(function(req, res, next) {
@@ -39,6 +34,11 @@ db.once('open', function() {
 
     app.use('/api', api);
 
+    app.use(function(err, req, res, next) {
+      if(!err.status) return res.status(500).send(err.message||err);
+      res.status(err.status).send(err.message);
+    });
+    
     app.listen(config.port);
 
 })

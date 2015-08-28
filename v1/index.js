@@ -6,6 +6,7 @@ module.exports = function(mongoose) {
 
     var model = require('./schemas')(mongoose);
 
+    //CRUD Routing
     for(var i in model) {
       (function(name, model) {
         version.route('/'+name)
@@ -51,6 +52,22 @@ module.exports = function(mongoose) {
           })
       })(i, model[i])
     }
+
+    //Particular routing
+    var pub = express.Router();
+
+    pub.post('/login', function(req, res, next) {
+      model.user
+        .findOne({name: req.body.name})
+        .exec(function(err, user) {
+          if(err) return next(err);
+          if(!user || !user.authenticate(req.body.pass)) return next({status: 404, message: 'Invalid username or password.'});
+          req.session.user = user;
+          res.status(200).end();
+        });
+    });
+
+    version.use('/public', pub);
 
     return version;
 }
