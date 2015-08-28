@@ -1,0 +1,4 @@
+{
+  "mongo": "mongodb://localhost/oadn",
+  "port": 3001
+}
