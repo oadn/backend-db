@@ -3,12 +3,13 @@ module.exports = function(mongoose) {
 
   var part = new Schema({
     title: String,
-    textContent: String
+    textContent: String,
+    role: {type: String, enum: ['author', 'writer', 'editor', 'reviewer']}
   });
 
   part.add({parts: [part]});
 
-  var book = new Schema({
+  var volume = new Schema({
     title: {type: String, required: true},
     members: [{
       user: {type: Schema.Types.ObjectId, ref: 'user'},
@@ -24,7 +25,7 @@ module.exports = function(mongoose) {
       user: {type: Schema.Types.ObjectId, ref: 'user'},
       role: {type: String, enum: ['owner', 'author', 'writer', 'editor', 'reviewer']}
     }],
-    books: [book]
+    books: [volume]
   });
 
   return mongoose.model('project', project);
