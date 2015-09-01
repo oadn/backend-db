@@ -17,7 +17,8 @@ module.exports = function(mongoose) {
     }],
     parts: [{type: Schema.Types.ObjectId, ref: 'part'}],
     project: [{type: Schema.Types.ObjectId, ref: 'project'}],
-    preOrdered: [{type: Schema.Types.ObjectId, ref: 'alias'}]
+    preOrdered: [{type: Schema.Types.ObjectId, ref: 'alias'}],
+    readers: [{type: Schema.Types.ObjectId, ref: 'alias'}]
   });
 
   return mongoose.model('volume', volume);

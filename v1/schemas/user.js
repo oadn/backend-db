@@ -6,10 +6,6 @@ module.exports = function(mongoose) {
   var user = new Schema({
     ids: [{type: Schema.Types.ObjectId, ref: 'id'}],
     aliases: [{type: Schema.Types.ObjectId, ref: 'alias'}],
-    myBooks: [{
-      book: {type: Schema.Types.ObjectId, ref: 'volume'},
-      read: {type: Number, default: 0}
-    }],
     mail: String,
     name: {type: String, index: true},
     salt: String,

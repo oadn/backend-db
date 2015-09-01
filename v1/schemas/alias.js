@@ -7,6 +7,10 @@ module.exports = function(mongoose) {
     main: {type: Boolean, default: false},
     user: {type: Schema.Types.ObjectId, ref: 'user'},
     preOrders: [{type: Schema.Types.ObjectId, ref: 'volume'}],
+    myBooks: [{
+      book: {type: Schema.Types.ObjectId, ref: 'volume'},
+      read: {type: Number, default: 0}
+    }],
     projects: [{type: Schema.Types.ObjectId, ref: 'project'}]
   });
 
