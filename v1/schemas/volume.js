@@ -16,6 +16,7 @@ module.exports = function(mongoose) {
       role: {type: String, enum: ['author', 'writer', 'editor', 'reviewer']}
     }],
     parts: [{type: Schema.Types.ObjectId, ref: 'part'}],
+    detached: [{type: Schema.Types.ObjectId, ref: 'part'}],
     project: [{type: Schema.Types.ObjectId, ref: 'project'}],
     preOrdered: [{type: Schema.Types.ObjectId, ref: 'alias'}],
     readers: [{type: Schema.Types.ObjectId, ref: 'alias'}]

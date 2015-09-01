@@ -3,6 +3,7 @@ module.exports = function(mongoose) {
 
   var alias = new Schema({
     name: String,
+    image: String,
     stars: {type: Number, min: 0, max: 5},
     main: {type: Boolean, default: false},
     user: {type: Schema.Types.ObjectId, ref: 'user'},
