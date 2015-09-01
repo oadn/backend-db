@@ -6,6 +6,7 @@ module.exports = function(mongoose) {
     stars: {type: Number, min: 0, max: 5},
     main: {type: Boolean, default: false},
     user: {type: Schema.Types.ObjectId, ref: 'user'},
+    preOrders: [{type: Schema.Types.ObjectId, ref: 'volume'}],
     projects: [{type: Schema.Types.ObjectId, ref: 'project'}]
   });
 

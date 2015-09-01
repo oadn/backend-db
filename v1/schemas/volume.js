@@ -4,6 +4,10 @@ module.exports = function(mongoose) {
   var volume = new Schema({
     title: {type: String, required: true},
     description: String,
+    license: String,
+    price: {type: Number, default: 0},
+    published: {type: Boolean, default: false},
+    cover: String,
     stars: {type: Number, min: 0, max: 5},
     comments: [{type: Schema.Types.ObjectId, ref: 'post'}],
     reviews: [{type: Schema.Types.ObjectId, ref: 'post'}],
@@ -12,7 +16,8 @@ module.exports = function(mongoose) {
       role: {type: String, enum: ['author', 'writer', 'editor', 'reviewer']}
     }],
     parts: [{type: Schema.Types.ObjectId, ref: 'part'}],
-    project: [{type: Schema.Types.ObjectId, ref: 'project'}]
+    project: [{type: Schema.Types.ObjectId, ref: 'project'}],
+    preOrdered: [{type: Schema.Types.ObjectId, ref: 'alias'}]
   });
 
   return mongoose.model('volume', volume);

@@ -5,6 +5,8 @@ module.exports = function(mongoose) {
     name: {type: String, required: true},
     description: String,
     stars: {type: Number, min: 0, max: 5},
+    price: {type: Number, default: 0},
+    preOrdered: [{type: Schema.Types.ObjectId, ref: 'alias'}],
     comments: [{type: Schema.Types.ObjectId, ref: 'post'}],
     org: {type: Schema.Types.ObjectId, ref: 'org'},
     members: [{
