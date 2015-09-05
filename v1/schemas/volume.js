@@ -13,7 +13,9 @@ module.exports = function(mongoose) {
     reviews: [{type: Schema.Types.ObjectId, ref: 'post'}],
     members: [{
       user: {type: Schema.Types.ObjectId, ref: 'alias'},
-      role: {type: String, enum: ['author', 'writer', 'editor', 'reviewer']}
+      role: {type: String, enum: ['author', 'writer', 'editor', 'reviewer']},
+      stars: {type: Number, min: 0, max: 5},
+      comments: [{type: Schema.Types.ObjectId, ref: 'post'}]
     }],
     parts: [{type: Schema.Types.ObjectId, ref: 'part'}],
     detached: [{type: Schema.Types.ObjectId, ref: 'part'}],

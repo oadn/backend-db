@@ -11,9 +11,14 @@ module.exports = function(mongoose) {
     org: {type: Schema.Types.ObjectId, ref: 'org'},
     members: [{
       user: {type: Schema.Types.ObjectId, ref: 'alias'},
-      role: {type: String, enum: ['owner', 'author', 'writer', 'editor', 'reviewer']}
+      role: {type: String, enum: ['owner', 'author', 'writer', 'editor', 'reviewer']},
+      stars: {type: Number, min: 0, max: 5},
+      comments: [{type: Schema.Types.ObjectId, ref: 'post'}]
     }],
-    volumes: [{type: Schema.Types.ObjectId, ref: 'volume'}]
+    languages: [{
+        lang: String,
+        volumes: [{type: Schema.Types.ObjectId, ref: 'volume'}]
+    }]
   });
 
   return mongoose.model('project', project);
