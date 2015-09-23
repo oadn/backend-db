@@ -1,4 +1,5 @@
 var express = require('express');
+var util = require('util');
 
 module.exports = function(mongoose) {
 
@@ -9,6 +10,7 @@ module.exports = function(mongoose) {
     //CRUD Routing
     for(var i in model) {
       (function(name, model) {
+        var schema = model.schema.tree;
         version.route('/'+name)
           .get(function(req, res, next) {
             model
@@ -49,7 +51,25 @@ module.exports = function(mongoose) {
                 if(err) return next(err);
                 res.json(item);
               })
-          })
+          });
+
+        //First order references
+        for(var i in schema) {
+          (function(prop, def){
+            if(def.ref || (util.isArray(def) && def[0] && def[0].ref)) {
+              version.route('/'+name+'/:id/'+prop)
+                .get(function(req, res, next) {
+                  model
+                    .findOne({_id: req.params.id})
+                    .populate(prop)
+                    .exec(function(err, item) {
+                      if(err) return next(err);
+                      res.json(item[prop]);
+                    });
+                })
+            }
+          })(i, schema[i])
+        }
       })(i, model[i])
     }
 
